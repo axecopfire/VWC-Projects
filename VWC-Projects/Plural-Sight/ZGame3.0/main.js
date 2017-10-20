@@ -18,7 +18,7 @@ var character = {
 
 if (!character.name) {
     character.name = window.prompt("What do you want to be named? do you want me to name you?")
-    if(!character.name) {
+    if (!character.name) {
         window.alert("Well too bad. From now until eternity you shall be known as 'Puddles the Poopy Pants'!")
         character.name = "Puddles the Poopy Pants"
     }
@@ -34,7 +34,10 @@ if (character.characterClass === "doctor") {
     character.health = 7;
 }
 
-var firstEncounter = window.prompt("Our adventurer, a former " + character.characterClass + " " + character.name + )
+var firstEncounter = window.prompt("Our adventurer, a former " + character.characterClass + " " + character.name + "looks deep within and pulls strength from  who knows where and confronts this zombie menace. Wait...how do you confront the zombie menace? I think you could sneak by or attack it if you want. (sneak or attack)").toLowerCase();
+
+
+
 
 var weaponList = ["a pouch of Capri-Sun", "a baseball card", "a pair of keys", "a boombox"];
 
