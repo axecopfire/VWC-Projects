@@ -18,7 +18,7 @@ var character = {
 
 if (!character.name) {
     character.name = window.prompt("What do you want to be named? do you want me to name you?")
-    if(!character.name) {
+    if (!character.name) {
         window.alert("Well too bad. From now until eternity you shall be known as 'Puddles the Poopy Pants'!")
         character.name = "Puddles the Poopy Pants"
     }
@@ -34,7 +34,39 @@ if (character.characterClass === "doctor") {
     character.health = 7;
 }
 
-var firstEncounter = window.prompt("Our adventurer, a former " + character.characterClass + " " + character.name + )
+var firstEncounter = window.prompt(character.name + ", a former " + character.characterClass + " is assailed upon by a zombie while minding their own darn business! What shall you do? Attack or Sneak?").toLowerCase();
+
+if (choice === "attack") {
+    if (character.strength >= 5) {
+        window.alert("Using only your bare hands, you slay that zombie! Excelsior! You get stoked and do a victory dance.");
+        outcome = "win";
+        character.strength++;
+    } else if (character < 5) {
+        window.alert("You fearlessly charge the zombie and summon all of your strength. Using your mighty powers you crush thy foe as if it were a sheet of paper you needed to shred.");
+        window.alert("Just kidding. You are immediately bitten by the zombie. Not all is lost.")
+        character.health -= 5;
+        outcome="lose";
+    }
+}
+
+if (choice === "sneak") {
+    if (character.stealth >= 5) {
+        window.alert("You sneak by the zombie, you clever little turd!");
+    } else if (character.stealth < 5) {
+        window.alert("You try to slip by the zombie, but you accidentally stumle and alert the zombie to your presence. It assails you with its zombie might and bite!");
+        if (character.strength >= 5) {
+            window.alert("Although you have alerted this zombie you are able to crush its skull with your bare hands.");
+            outcome = "win";
+        } else {
+            window.alert("The weakling that you are the zombie chomps down on an arm as you flail wildly in its general direction.");
+            outcome = "lose";
+        }
+    }
+}
+
+if (outcome === "lose") {
+    window.alert("You are more clever than the dumb zombie")
+}
 
 var weaponList = ["a pouch of Capri-Sun", "a baseball card", "a pair of keys", "a boombox"];
 
