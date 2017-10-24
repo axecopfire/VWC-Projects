@@ -66,7 +66,14 @@ if (choice === "sneak") {
 }
 
 if (outcome === "lose") {
-    window.alert("You are more clever than the dumb zombie")
+    window.alert("You are more clever than the dumb zombie and are able to escape.")
+    character.health -= 5;
+    if (character.health <= 0) {
+        window.alert("You are chased down and eviserated by the zombie. You are but a pile of entrails to be scoffed at.")
+    } else {
+        window.alert("You win and make it away!");
+    }
+
 }
 
 
