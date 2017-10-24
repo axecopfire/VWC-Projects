@@ -33,7 +33,11 @@ if (character.characterClass === "politician") {
 if (character.characterClass === "doctor") {
     character.health = 7;
 }
-var firstEncounter = window.prompt("Our adventurer, a former " + character.characterClass + " " + character.name + "looks deep within and pulls strength from  who knows where and confronts this zombie menace. Wait...how do you confront the zombie menace? I think you could sneak by or attack it if you want. (sneak or attack)").toLowerCase();
+if (!character.characterClass) {
+    character.characterClass = window.alert("That's nice you were a nanny.")
+    character.characterClass = "nanny"
+}
+var choice = window.prompt("Our adventurer, a former " + character.characterClass + " " + character.name + "looks deep within and pulls strength from  who knows where and confronts this zombie menace. Wait...how do you confront the zombie menace? I think you could sneak by or attack it if you want. (sneak or attack)").toLowerCase();
 
 
 
@@ -42,9 +46,9 @@ if (choice === "attack") {
         window.alert("Using only your bare hands, you slay that zombie! Excelsior! You get stoked and do a victory dance.");
         outcome = "win";
         character.strength++;
-    } else if (character < 5) {
+    } else if (character.strength <= 5) {
         window.alert("You fearlessly charge the zombie and summon all of your strength. Using your mighty powers you crush thy foe as if it were a sheet of paper you needed to shred.");
-        window.alert("Just kidding. You are immediately bitten by the zombie. Not all is lost.")
+        window.alert("Just kidding. You are immediately bitten by the zombie. Not all is lost.");
         character.health -= 5;
         outcome="lose";
     }
@@ -74,20 +78,4 @@ if (outcome === "lose") {
         window.alert("You win and make it away!");
     }
 
-}
-
-
-
-var weaponList = ["a pouch of Capri-Sun", "a baseball card", "a pair of keys", "a boombox"];
-
-var weapon = weaponList[randomNumber(weaponList.length - 1)];
-
-alert("Yo get outta here zombie! You pull " + weapon + " out and start waving it menacingly.");
-
-var survival = randomNumber(2)
-
-if (randomNumber === 0) {
-    alert("The zombie bites you. You die!");
-} else if (randomNumber > 0) {
-    alert("You kill the zombie with " + weapon + ". You survive!");
 }
