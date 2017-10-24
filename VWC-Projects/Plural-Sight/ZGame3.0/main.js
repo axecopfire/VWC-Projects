@@ -33,8 +33,9 @@ if (character.characterClass === "politician") {
 if (character.characterClass === "doctor") {
     character.health = 7;
 }
+var firstEncounter = window.prompt("Our adventurer, a former " + character.characterClass + " " + character.name + "looks deep within and pulls strength from  who knows where and confronts this zombie menace. Wait...how do you confront the zombie menace? I think you could sneak by or attack it if you want. (sneak or attack)").toLowerCase();
 
-var firstEncounter = window.prompt(character.name + ", a former " + character.characterClass + " is assailed upon by a zombie while minding their own darn business! What shall you do? Attack or Sneak?").toLowerCase();
+
 
 if (choice === "attack") {
     if (character.strength >= 5) {
@@ -67,6 +68,8 @@ if (choice === "sneak") {
 if (outcome === "lose") {
     window.alert("You are more clever than the dumb zombie")
 }
+
+
 
 var weaponList = ["a pouch of Capri-Sun", "a baseball card", "a pair of keys", "a boombox"];
 
