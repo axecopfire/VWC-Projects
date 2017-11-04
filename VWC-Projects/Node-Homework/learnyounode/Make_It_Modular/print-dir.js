@@ -1,14 +1,7 @@
-var filterDir = require("./filter-dir");
-var printlist = filterDir.printlist;
-
-function printNewDir (error, data) {
-    if (error) {
-        console.error(error)
+require("./filter-dir")(process.argv[2], process.argv[3], function(response) {
+    if (response.error) {
+        console.error(response.error);
     } else {
-        console.log(printlist);
+        console.log(response.success);
     }
-}
-
-
-
-filterDir(process.argv[2], process.argv[3], printNewDir)
+});
