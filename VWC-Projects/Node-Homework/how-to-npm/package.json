@@ -1,11 +1,16 @@
 {
-  "name": "how-to-npm",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "how-to-npm",
+    "version": "1.0.1",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"node test.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "��#\u0000O\u0000h\u0000 \u0000t\u0000h\u0000i\u0000s\u0000 \u0000i\u0000s\u0000 \u0000a\u0000 \u0000s\u0000w\u0000e\u0000e\u0000t\u0000 \u0000r\u0000e\u0000a\u0000d\u0000m\u0000e\u0000 \u0000a\u0000b\u0000o\u0000u\u0000t\u0000 \u0000a\u0000l\u0000l\u0000 \u0000t\u0000h\u0000e\u0000 \u0000N\u0000P\u0000M\u0000 \u0000t\u0000h\u0000i\u0000n\u0000g\u0000s\u0000.\u0000",
+    "repository": "google.com",
+    "dependencies": {
+        "@linclark/pkg": "^1.0.2"
+    },
+    "devDependencies": {}
 }
