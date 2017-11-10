@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-console.log('This script populates a some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: pupulatedb mongodb://your_username:your_password@your_database_url');
+console.log('This script populates a some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: populatedb mongodb://your_username:your_password@your_dabase_url');
 
 //Get arguments passed on command line
 var userArgs = process.argv.slice(2);
@@ -15,6 +15,7 @@ var Author = require('./models/author')
 var Genre = require('./models/genre')
 var BookInstance = require('./models/bookinstance')
 
+
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
 mongoose.connect(mongoDB);
@@ -27,78 +28,80 @@ var books = []
 var bookinstances = []
 
 function authorCreate(first_name, family_name, d_birth, d_death, cb) {
-    authordetail = {first_name: first_name, family_name: family_name}
-    if (d_birth != false) authordetail.date_of_birth = d_birth
-    if (d_death != false) authordetail.date_of_death = d_death
-
-    var author = new Author(authordetail);
-
-    author.save(function (err) {
-        if (err) {
-            cb(err, null)
-            return
-        }
-        console.log('New Author: ' + author);
-        authors.ppush(author)
-        cb(null, author)
-    });
+  authordetail = {first_name:first_name , family_name: family_name }
+  if (d_birth != false) authordetail.date_of_birth = d_birth
+  if (d_death != false) authordetail.date_of_death = d_death
+  
+  var author = new Author(authordetail);
+       
+  author.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
+    }
+    console.log('New Author: ' + author);
+    authors.push(author)
+    cb(null, author)
+  }  );
 }
 
 function genreCreate(name, cb) {
-    var genre = new Genre({name: name});
-
-    genre.save(function (err) {
-        if (err) {
-            cb(err, null);
-            return;
-        }
-        console.log('New Genre: ' + genre);
-        genres.push(genre)
-        cb(null, genre);
-    });
+  var genre = new Genre({ name: name });
+       
+  genre.save(function (err) {
+    if (err) {
+      cb(err, null);
+      return;
+    }
+    console.log('New Genre: ' + genre);
+    genres.push(genre)
+    cb(null, genre);
+  }   );
 }
 
 function bookCreate(title, summary, isbn, author, genre, cb) {
-    bookdetail = {
-        title: title,
-        summary: summary,
-        author: author,
-        isbn: isbn
+  bookdetail = { 
+    title: title,
+    summary: summary,
+    author: author,
+    isbn: isbn
+  }
+  if (genre != false) bookdetail.genre = genre
+    
+  var book = new Book(bookdetail);    
+  book.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
     }
-    if (genre != false) bookdetail.genre = genre
-
-    var book = new Book(bookdetail);
-    book.save(function (err) {
-        if (err) {
-            cb(err, null)
-            return
-        }
-        console.log('New Book: ' + book);
-        books.push(book)
-        cb(null, book)
-    });
+    console.log('New Book: ' + book);
+    books.push(book)
+    cb(null, book)
+  }  );
 }
+
 
 function bookInstanceCreate(book, imprint, due_back, status, cb) {
-    bookinstancedetail = {
-        book: book,
-        imprint: imprint
+  bookinstancedetail = { 
+    book: book,
+    imprint: imprint
+  }    
+  if (due_back != false) bookinstancedetail.due_back = due_back
+  if (status != false) bookinstancedetail.status = status
+    
+  var bookinstance = new BookInstance(bookinstancedetail);    
+  bookinstance.save(function (err) {
+    if (err) {
+      console.log('ERROR CREATING BookInstance: ' + bookinstance);
+      cb(err, null)
+      return
     }
-    if (due_back != false) bookinstancedetail.due_back = due_back
-    if (status != false) bookinstancedetail.satatus = status
-
-    var bookinstance = new BookInstance(bookinstancedetail);
-    bookinstance.save(function(err) {
-        if (err) {
-            console.log('ERROR CREATING BookInstance: ' + bookinstance);
-            cb(err, null)
-            return
-        }
-        console.log('New BookInstance: ' + bookinstance);
-        bookinstances.push(bookinstance)
-        cb(null, book)
-    });
+    console.log('New BookInstance: ' + bookinstance);
+    bookinstances.push(bookinstance)
+    cb(null, book)
+  }  );
 }
+
 
 function createGenreAuthors(cb) {
     async.parallel([
@@ -201,18 +204,25 @@ function createBookInstances(cb) {
         cb);
 }
 
+
+
 async.series([
     createGenreAuthors,
     createBooks,
     createBookInstances
 ],
-//optional callback
-function(err, results){
+// optional callback
+function(err, results) {
     if (err) {
-        console.log('FINAL ERR: ' + err);
-    } else {
-        console.log('BOOKInstances: ' + bookinstances);
+        console.log('FINAL ERR: '+err);
+    }
+    else {
+        console.log('BOOKInstances: '+bookinstances);
+        
     }
     //All done, disconnect from database
     mongoose.connection.close();
 });
+
+
+
