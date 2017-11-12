@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var index = require('./routes/index');
-var users = require('./routes/users');
 var catalog = require('./routes/catalog'); //Import routes for "catalog" area of site
 
 var app = express();
@@ -17,7 +15,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://<dbuser>:<dbpassword>@ds155325.mlab.com:55325/expresslocallibrarytut';
+var mongoDB = 'mongodb://admin:123@ds155325.mlab.com:55325/expresslocallibrarytut';
 mongoose.connect(mongoDB, {
     useMongoClient: true
 });
@@ -43,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/catalog', catalog); // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
