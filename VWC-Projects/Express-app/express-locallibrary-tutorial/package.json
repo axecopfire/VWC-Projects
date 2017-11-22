@@ -12,7 +12,12 @@
         "cookie-parser": "~1.4.3",
         "debug": "~2.6.9",
         "express": "~4.15.5",
+<<<<<<< HEAD
         "moment": "^2.19.2",
+=======
+        "express-validator": "^4.3.0",
+        "moment": "^2.19.1",
+>>>>>>> 4d82886dec4692a9bd3a2a6fccfb7f5cd6e71f94
         "mongoose": "^4.13.1",
         "morgan": "~1.9.0",
         "pug": "2.0.0-beta11",
