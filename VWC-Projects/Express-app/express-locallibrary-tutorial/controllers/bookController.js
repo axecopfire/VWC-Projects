@@ -111,7 +111,9 @@ exports.book_create_post = function(req, res, next) {
     var errors = req.validationErrors();
     if (errors) {
         // Some problems so we need to re-render our book
+        console.log('GENRE: ' + req.body.genre);
 
+        console.log('ERRORS: ' + errors);
         // Get all authors and genres for form
         async.parallel({
             authors: function(callback) {
