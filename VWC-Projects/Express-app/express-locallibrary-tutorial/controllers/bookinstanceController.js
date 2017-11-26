@@ -136,6 +136,7 @@ exports.bookinstance_update_get = function(req, res, next) {
 
         res.render('bookinstance_form', { title: 'Update  BookInstance', book_list: results.books, selected_book: results.bookinstance.book._id, bookinstance: results.bookinstance });
     });
+
 };
 
 // Handle bookinstance update on POST
