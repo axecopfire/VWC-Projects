@@ -5,4 +5,9 @@ function doubleEach(arr) {
     return darr
 }
 
-console.log(doubleEach(arr))
+function squareEach(arr) {
+    var sqarr = arr.map(x => x * x)
+    return sqarr
+}
+
+console.log(squareEach(arr))
